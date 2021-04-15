@@ -1,0 +1,7 @@
+.header {
+  margin-top: 28px;
+  width: 320px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+}
