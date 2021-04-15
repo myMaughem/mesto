@@ -1,0 +1,9 @@
+.profile {
+  width: 282px;
+  height: 286px;
+  margin: 42px auto 36px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  color: #FFFFFF;
+}
