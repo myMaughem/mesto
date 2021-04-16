@@ -1,0 +1,7 @@
+.element__photo-info {
+  max-width: 246px;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 22px;
+  margin: 0 auto;
+}

@@ -1,6 +1,8 @@
 .profile__info {
-  max-width: 282px;
-  margin: 29px auto 36px;
-  display: grid;
+  width: 282px;
+  margin: 25px auto 33px;
+  padding: 0;
   position: relative;
+  display: grid;
+  gap: 6px;
 }
