@@ -11,3 +11,10 @@
   overflow: hidden;
   justify-self: center;
 }
+@media (min-width:1024px) {
+  .profile__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    min-width: 336px;
+  }
+}

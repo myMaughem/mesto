@@ -9,3 +9,19 @@
   position: absolute;
   top: 8px; left: 245px;
 }
+.profile__edit-button:hover {
+  opacity: 0.6;
+  transition: opacity 0.3s ease-in-out;
+}
+@media (min-width:768px) {
+  .profile__edit-button {
+    top: 40px; left: 250px;
+  }
+}
+@media (min-width:1024px) {
+  .profile__edit-button {
+    width: 24px;
+    height: 24px;
+    top: 38px; left: 331px;
+  }
+}

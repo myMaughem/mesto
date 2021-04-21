@@ -6,3 +6,7 @@
   display: grid;
   gap: 6px;
 }
+@media (min-width:768px) {
+  .profile__info {
+    margin: 0;
+}

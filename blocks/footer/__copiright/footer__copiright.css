@@ -5,4 +5,14 @@
   font-weight: 400;
   line-height: 17px; 
   margin: 0;
+  width: 282px;
+  margin: 48px 0 36px;
+}
+@media (min-width:1024px) {
+  .footer__copiright {
+  margin-top: 66px;
+  margin-bottom: 60px;
+  font-size: 18px;
+  line-height: 22px;
+  }
 }

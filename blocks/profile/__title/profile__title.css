@@ -10,3 +10,15 @@
   overflow: hidden;
   justify-self: center;
 }
+@media (min-width:768px) {
+  .profile__title {
+    align-self: end;
+  }
+}
+@media (min-width:1024px) {
+  .profile__title {
+    font-size: 42px;
+    line-height: 48px;
+    max-width: 294px;
+  }
+}

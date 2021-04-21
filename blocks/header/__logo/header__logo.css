@@ -3,3 +3,15 @@
   height: 24.4px;
   margin: 0 auto 31.6px 27px;
 }
+@media (min-width:768px) {
+  .header__logo {
+    margin-left: 0;
+  }
+}
+@media (min-width:1024px) {
+  .header__logo {
+    width: 142px;
+    height: 33px;
+    margin-bottom: 41px;
+  }
+}

@@ -1,4 +1,14 @@
 .footer {
   width: 282px;
-  margin: 48px auto 36px;
+  margin: 0 auto;
+}
+@media (min-width:768px) {
+  .footer {
+  width: 586px;
+  }
+}
+@media (min-width:1024px) {
+  .footer {
+  width: 880px;
+  }
 }

@@ -7,3 +7,20 @@
   flex-direction: column;
   color: #FFFFFF;
 }
+@media (min-width:768px) {
+  .profile {
+    width: 584px;
+    height: 120px;
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+  }
+}
+@media (min-width:1024px) {
+  .profile {
+    width: 880px;
+    height: 120px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    grid-template-columns: 120px 1fr 1fr;
+  }
+}

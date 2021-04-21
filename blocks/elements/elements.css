@@ -1,6 +1,27 @@
 .elements {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   display: grid;
   gap: 20px;
+  grid-template-columns: 282px;
+  grid-template-rows: 361px;
+  justify-content: center;
+}
+@media (min-width:768px) {
+  .elements {
+    min-width: 768px;
+    grid-template-columns: 282px 282px;
+  }
+}
+@media (min-width:768px) {
+  .elements {
+    width: 584px;
+  }
+}
+@media (min-width:1024px) {
+  .elements {
+    width: 880px;
+    grid-template-columns: 282px 282px 282px;
+    gap: 25px 17px;
+  }
 }

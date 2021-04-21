@@ -1,7 +1,19 @@
 .header {
-  margin-top: 28px;
+  margin: 28px auto 0;
   width: 320px;
   display: flex;
   position: relative;
   flex-direction: column;
+}
+@media (min-width:768px) {
+  .header {
+    width: 584px;
+    margin-top: 45px;
+  }
+}
+@media (min-width:1024px) {
+  .header {
+    width: 880px;
+    height: 74px;
+  }
 }
