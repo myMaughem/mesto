@@ -6,8 +6,8 @@ const saveButton = document.querySelector('.popup__save-button');
 const formElement = document.querySelector('.popup__form');
 const profileTitle = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
-const nameInput = document.querySelector('.popup__text_type_name');
-const InfoInput = document.querySelector('.popup__text_type_info');
+const nameInput = document.querySelector('.popup__text-name');
+const InfoInput = document.querySelector('.popup__text-info');
 
 const userData = {
   name: 'Жак-Ив Кусто',
