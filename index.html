@@ -1,98 +1,98 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
-    <title>Место</title>
-  </head>
 
-  <body class="body">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
+</head>
 
-    <header class="header">
-      <img src="./images/header-logo.svg" alt="Заголовок Mesto Russia" class="header__logo">
-      <div class="header__line"></div>
-    </header>
+<body class="body">
 
-    <main class="content">
+  <header class="header">
+    <img src="./images/header-logo.svg" alt="Заголовок Mesto Russia" class="header__logo">
+  </header>
 
-      <section class="profile">
-        <img src="./images/Avatar.png" alt="Аватар профиля" class="profile__avatar">
-        <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <p class="profile__subtitle">Исследователь океана</p>
-          <button class="profile__edit-button"></button>
-        </div>
-        <button class="profile__add-button"></button>
-      </section>
+  <main class="content">
 
+    <section class="profile">
+      <img src="./images/Avatar.png" alt="Аватар профиля" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <p class="profile__subtitle">Исследователь океана</p>
+        <button type="button" aria-label="edit profile" class="profile__edit-button"></button>
+      </div>
+      <button aria-label="add photo" class="profile__add-button"></button>
+    </section>
+
+    <section class="photo-cards">
       <ul class="elements">
         <li class="element">
           <img src="./images/christian-wiediger.jpg" alt="церковь" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Какая-то там церковь</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/matreshka.jpg" alt="Матрешки" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Матрешки</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/moscow-bridge.jpg" alt="Мост" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Мост или мостище!</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/night-moscow.jpg" alt="Ночная столица" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Ночная Столица</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/ostankino.jpg" alt="Телебашня Останкино" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Телебашня Останкино</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/zakat-v-moscve.jpg" alt="Столичный закат" class="element__photo">
           <div class="element__photo-info">
             <h2 class="element__photo-text">Типичный столичный вечер</h2>
-            <button class="element__like-buttn"></button>
+            <button type="button" aria-label="like" class="element__like-button"></button>
           </div>
         </li>
       </ul>
+    </section>
 
-    </main>
+  </main>
 
-    <footer class="footer">
-      <p class="footer__copiright">&#169; 2021 Mesto Russia</p>
-    </footer>
+  <footer class="footer">
+    <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
+  </footer>
 
-  
-
-    <div class="popup">
-      <div class="popup__container">
-          <h2 class="popup__text">Редактировать профиль</h2>
-          <form class="popup__form">
-            <input type="text" class="popup__input-text popup__text-name">
-            <input type="text" class="popup__input-text popup__text-info">
-            <button type="submit" class="popup__save-button">Сохранить</button>
-          </form>
-          <div class="popup__close-icon"></div>
-      </div>
+  <div class="popup">
+    <div class="popup__container">
+      <h2 class="popup__text">Редактировать профиль</h2>
+      <form class="popup__form" name="profile-form">
+        <input type="text" name="fullname" placeholder="Введите имя" required class="popup__input-text popup__input-text_name">
+        <input type="text" name="info" placeholder="Краткая информация о вас" required class="popup__input-text popup__input-text_info">
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+      <button type="reset" aria-label="close window" class="popup__close-icon"></button>
     </div>
+  </div>
 
-    <script src="./src/script/script.js"></script>
+  <script src="./src/script/script.js"></script>
 
-  </body>
-  
+</body>
+
 </html>

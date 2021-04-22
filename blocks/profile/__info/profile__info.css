@@ -1,5 +1,4 @@
 .profile__info {
-  width: 282px;
   margin: 25px auto 33px;
   padding: 0;
   position: relative;
@@ -9,5 +8,14 @@
 @media (min-width:768px) {
   .profile__info {
     margin: 0;
+    grid-template-columns: max-content 1fr 1fr;
+    grid-template-areas: 
+    'profile__title profile__edit-button'
+    'profile__subtitle .';
+  }
+}
+@media (min-width:1024px) {
+  .profile__info {
+    gap: 18px;
   }
 }

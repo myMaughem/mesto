@@ -1,6 +1,5 @@
 .profile {
   width: 282px;
-  height: 286px;
   margin: 42px auto 34px;
   display: flex;
   position: relative;
@@ -10,17 +9,15 @@
 @media (min-width:768px) {
   .profile {
     width: 584px;
-    height: 120px;
     display: grid;
-    grid-template-columns: 120px 1fr 1fr;
+    grid-template-columns: max-content 1fr 1fr;
+    gap: 30px;
   }
 }
 @media (min-width:1024px) {
   .profile {
     width: 880px;
-    height: 120px;
     margin-top: 40px;
     margin-bottom: 50px;
-    grid-template-columns: 120px 1fr 1fr;
   }
 }

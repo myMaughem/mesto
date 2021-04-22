@@ -1,14 +1,15 @@
 .footer {
   width: 282px;
   margin: 0 auto;
+  flex-shrink: 0;
 }
 @media (min-width:768px) {
   .footer {
-  width: 586px;
+    width: 586px;
   }
 }
 @media (min-width:1024px) {
   .footer {
-  width: 880px;
+    width: 880px;
   }
 }
