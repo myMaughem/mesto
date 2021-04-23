@@ -1,7 +1,6 @@
 .elements {
   width: 320px;
   margin: 0 auto;
-  padding: 0;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, 282px);

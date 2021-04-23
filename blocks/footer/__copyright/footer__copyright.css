@@ -9,9 +9,9 @@
 }
 @media (min-width:1024px) {
   .footer__copyright {
-  margin-top: 66px;
-  margin-bottom: 60px;
-  font-size: 18px;
-  line-height: 22px;
+    margin-top: 66px;
+    margin-bottom: 60px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }

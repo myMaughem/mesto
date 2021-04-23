@@ -13,8 +13,8 @@
 }
 @media (min-width:768px) {
   .profile__subtitle {
-  grid-area: profile__subtitle;
-  justify-self: start;
+    grid-area: profile__subtitle;
+    justify-self: start;
   }
 }
 @media (min-width:1024px) {

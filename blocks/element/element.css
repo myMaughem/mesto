@@ -1,13 +1,5 @@
 .element {
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
   border-radius: 10px;
   background: #FFFFFF;
   color: #000000;
-}
-@media (min-width:768px) {
-  .element {
-    margin: 0;
-  }
 }
