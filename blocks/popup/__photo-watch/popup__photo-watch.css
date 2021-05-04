@@ -12,9 +12,3 @@
     max-width: 75vw;
   }
 }
-@media (min-width:768px) {
-  .popup__photo-watch {
-    max-height: 75vw;
-    max-width: 75vw;
-  }
-}
