@@ -1,0 +1,20 @@
+.popup__photo-watch {
+  max-width: 282px;
+  min-height: 300px;
+  background-color: blanchedalmond;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width:375px) {
+  .popup__photo-watch {
+    max-height: 75vw;
+    max-width: 75vw;
+  }
+}
+@media (min-width:768px) {
+  .popup__photo-watch {
+    max-height: 75vw;
+    max-width: 75vw;
+  }
+}

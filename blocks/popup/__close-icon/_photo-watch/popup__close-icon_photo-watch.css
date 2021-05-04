@@ -1,0 +1,11 @@
+.popup__close-icon_photo-watch {
+  position: static;
+  margin-left: 91%;
+  margin-bottom: 19px;
+}
+@media (min-width:768px) {
+  .popup__close-icon_photo-watch {
+    margin-left: 100%;
+    margin-bottom: 5px;
+  }
+}

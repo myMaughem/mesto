@@ -1,0 +1,15 @@
+.popup__profile-edt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 1s, opacity 0.5s linear;
+}
