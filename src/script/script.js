@@ -6,10 +6,9 @@ const popupPhotoOpen = document.querySelector('.popup__photo-open');
 
 const popupContainerProfile = document.querySelector('.popup__container_profile');
 const popupContainerPhotoEdit = document.querySelector('.popup__container_photo-edit');
-const popupPhotoWatch = document.querySelector('.popup__container_photo-watch');
 
 const popupPhotoOpenBlock = document.querySelector('.popup__photo-watch');
-const popupPhotoOpenText = document.querySelector('.popup__photo-watch_text');
+const popupPhotoOpenText = document.querySelector('.popup__photo-watch-text');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close-icon_profile');
