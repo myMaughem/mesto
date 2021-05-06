@@ -1,11 +1,6 @@
-const popup = document.querySelector('.popup');
-
 const popupProfileEdt = document.querySelector('.popup__profile-edt');
 const popupPhotoEdt = document.querySelector('.popup__photo-edt');
 const popupPhotoOpen = document.querySelector('.popup__photo-open');
-
-const popupContainerProfile = document.querySelector('.popup__container_profile');
-const popupContainerPhotoEdit = document.querySelector('.popup__container_photo-edit');
 
 const popupPhotoOpenBlock = document.querySelector('.popup__photo-watch');
 const popupPhotoOpenText = document.querySelector('.popup__photo-watch-text');
@@ -26,7 +21,7 @@ const formPhoto = document.querySelector('#profile-photo');
 const profileTitle = document.querySelector('.profile__title');
 const profileInfo = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__input-text_profile_name');
-const InfoInput = document.querySelector('.popup__input-text_profile_info');
+const infoInput = document.querySelector('.popup__input-text_profile_info');
 
 const namePhotoInput = document.querySelector('.popup__input-text_photo_name');
 const urlPhotoInput = document.querySelector('.popup__input-text_photo_url');
@@ -78,6 +73,7 @@ function createPhotoElement (name, link) {
 
   textPhoto.textContent = name;
   urlPhoto.src = link;
+  urlPhoto.alt = name;
   urlPhoto.dataset.name = name;
 
   deleteBtn.addEventListener('click', delPhoto);
@@ -95,6 +91,7 @@ function addNewPhoto () {
   const newPhoto = createPhotoElement(photoValue, urlValue)
 
   elementsSection.prepend(newPhoto);
+  closePopup(popupPhotoEdt);
 };
 
 // лайки и удаление
@@ -104,72 +101,65 @@ function delPhoto (event) {
 function likePhoto (event) {
   event.target.classList.toggle('element__like-button_active');
 };
-
 // открыть фото
 function openPhoto(event) {
-  togglePhotoOpenPopup();
+  openPopup(popupPhotoOpen);
   popupPhotoOpenBlock.src = event.target.src;
   popupPhotoOpenText.textContent = event.target.dataset.name;
 };
 
 const userData = {
   name: 'Жак-Ив Кусто',
-  Info: 'Исследователь океана',
+  info: 'Исследователь океана',
 }
-
 // Обновляет профиль
 function updateProfile() {
   profileTitle.textContent = userData.name;
-  profileInfo.textContent = userData.Info;
+  profileInfo.textContent = userData.info;
 }
-
 // Заполняет форму и замыкает
 function setFormValues() {
   nameInput.value = userData.name;
-  InfoInput.value = userData.Info;
+  infoInput.value = userData.info;
 }
 // фун-ции открытия закрытия кнопок
-function toggleProfilePopup() {
-  popupProfileEdt.classList.toggle('popup_opened');
-}
+function openPopup(openPopup) {
+  openPopup.classList.add('popup_opened');
+};
+function closePopup(closePopup) {
+  closePopup.classList.remove('popup_opened');
+};
+
 function togglePhotoPopup() {
-  popupPhotoEdt.classList.toggle('popup_opened');
+  openPopup (popupPhotoEdt);
   namePhotoInput.value = '';
   urlPhotoInput.value = '';
 }
-function togglePhotoOpenPopup() {
-  popupPhotoOpen.classList.toggle('popup_opened');
-}
-function closePopup() {
-  popupProfileEdt.classList.remove('popup_opened');
-  popupPhotoEdt.classList.remove('popup_opened');
-  popupPhotoOpen.classList.remove('popup_opened');
-}
+
 // открывает форму профиля
 function editHandler() {
   setFormValues();
-  toggleProfilePopup();
+  openPopup(popupProfileEdt);
 }
 // сохранение формы
 function saveProfileForm(event) {
   event.preventDefault();
-  toggleProfilePopup();
+  closePopup (popupProfileEdt);
   userData.name = nameInput.value;
-  userData.Info = InfoInput.value;
+  userData.info = infoInput.value;
   updateProfile();
 }
 // сохранение фото
 function savePhotoForm(event) {
   event.preventDefault();
-  togglePhotoPopup();
+  addNewPhoto();
 }
 // события с кнопками
 formProfile.addEventListener('submit', saveProfileForm);
-popupContainerPhotoEdit.addEventListener('submit', savePhotoForm);
+popupPhotoEdt.addEventListener('submit', savePhotoForm);
 
 editProfileButton.addEventListener('click', editHandler);
-closePopupProfile.addEventListener('click', closePopup);
+closePopupProfile.addEventListener('click', function() {closePopup(popupProfileEdt)});
 addPhotoButton.addEventListener('click', togglePhotoPopup);
-saveNewPhotoButton.addEventListener('click', addNewPhoto);
-closePopupPhoto.addEventListener('click', closePopup);
-closePopupPhotoOpen.addEventListener('click', closePopup);
+closePopupPhoto.addEventListener('click', function() {closePopup(popupPhotoEdt)});
+closePopupPhotoOpen.addEventListener('click', function() {closePopup(popupPhotoOpen)});
