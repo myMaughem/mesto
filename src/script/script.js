@@ -1,6 +1,6 @@
-const popupProfileEdt = document.querySelector('.popup__profile-edt');
-const popupPhotoEdt = document.querySelector('.popup__photo-edt');
-const popupPhotoOpen = document.querySelector('.popup__photo-open');
+const popupProfileEdt = document.querySelector('#popup__profile-edt');
+const popupPhotoEdt = document.querySelector('#popup__photo-edt');
+const popupPhotoOpen = document.querySelector('#popup__photo-open');
 
 const popupPhotoOpenBlock = document.querySelector('.popup__photo-watch');
 const popupPhotoOpenText = document.querySelector('.popup__photo-watch-text');
