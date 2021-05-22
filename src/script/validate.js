@@ -1,5 +1,3 @@
-
-
 function openPopupClear(formElement, config) {
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
@@ -12,12 +10,10 @@ function openPopupClear(formElement, config) {
   })
 }
 
-
 const clearInputError = (formElement) => {
   const errorElement = formElement.querySelectorAll(`.${inputElement.id}-error`)
   errorElement.textContent = '';
 }
-
 
 const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`)
@@ -85,4 +81,3 @@ const config = {
 };
 
 enableValidation(config);
-

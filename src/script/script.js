@@ -13,7 +13,7 @@ const closePopupPhoto = document.querySelector('.popup__close-icon_photo');
 const closePopupPhotoOpen = document.querySelector('.popup__close-icon_photo-watch');
 const saveButton = document.querySelector('.popup__save-button_profile');
 
-const addPhotoButton = document.querySelector('.profile__add-button'); 
+const addPhotoButton = document.querySelector('.profile__add-button');
 const saveNewPhotoButton = document.querySelector('.popup__save-button_hpoto');
 // шаблон
 const photoTemplate = document.querySelector('#element_template');
@@ -58,14 +58,14 @@ const initialCards = [
 const elementsSection = document.querySelector('.elements');
 const photoWatchSection = document.querySelector('.photo-watch');
 // перебор массива
-initialCards.forEach(function(element) {
+initialCards.forEach(function (element) {
   const newPhoto = createPhotoElement(element.name, element.link)
 
   elementsSection.append(newPhoto);
 });
 
 
-function createPhotoElement (name, link) {
+function createPhotoElement(name, link) {
 
   const newPhoto = photoTemplate.content.querySelector('.element').cloneNode(true);
   const textPhoto = newPhoto.querySelector('.element__photo-text');
@@ -86,7 +86,7 @@ function createPhotoElement (name, link) {
 }
 
 // добавление новых фото
-function addNewPhoto () {
+function addNewPhoto() {
   const photoValue = namePhotoInput.value;
   const urlValue = urlPhotoInput.value;
 
@@ -97,10 +97,10 @@ function addNewPhoto () {
 };
 
 // лайки и удаление
-function delPhoto (event) {
+function delPhoto(event) {
   event.target.closest('.element').remove();
 };
-function likePhoto (event) {
+function likePhoto(event) {
   event.target.classList.toggle('element__like-button_active');
 };
 // открыть фото
@@ -126,7 +126,7 @@ function closePopup(closePopup) {
 };
 
 function togglePhotoPopup() {
-  openPopup (popupPhotoEdt);
+  openPopup(popupPhotoEdt);
   namePhotoInput.value = '';
   urlPhotoInput.value = '';
   openPopupClear(popupPhotoEdt, config);
@@ -141,7 +141,7 @@ function editHandler() {
 // сохранение формы
 function saveProfileForm(event) {
   event.preventDefault();
-  closePopup (popupProfileEdt);
+  closePopup(popupProfileEdt);
   profileTitle.textContent = nameInput.value;
   profileInfo.textContent = infoInput.value;
 }
@@ -153,10 +153,10 @@ function savePhotoForm(event) {
 // закрытие по Esc
 function closeEscPopup(evt) {
   if (evt.key === 'Escape') {
-  const popupOpened =  document.querySelector('.popup_opened')
+    const popupOpened = document.querySelector('.popup_opened')
     closePopup(popupOpened);
-    }
   }
+}
 // закрытие по оверу
 popupFones.forEach(popupElement => popupElement.addEventListener('mousedown', function (evt) {
   if (evt.target === evt.currentTarget) {
@@ -168,7 +168,7 @@ formProfile.addEventListener('submit', saveProfileForm);
 popupPhotoEdt.addEventListener('submit', savePhotoForm);
 
 editProfileButton.addEventListener('click', editHandler);
-closePopupProfile.addEventListener('click', function() {closePopup(popupProfileEdt)});
+closePopupProfile.addEventListener('click', function () { closePopup(popupProfileEdt) });
 addPhotoButton.addEventListener('click', togglePhotoPopup);
-closePopupPhoto.addEventListener('click', function() {closePopup(popupPhotoEdt)});
-closePopupPhotoOpen.addEventListener('click', function() {closePopup(popupPhotoOpen)});
+closePopupPhoto.addEventListener('click', function () { closePopup(popupPhotoEdt) });
+closePopupPhotoOpen.addEventListener('click', function () { closePopup(popupPhotoOpen) });
