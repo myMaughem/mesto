@@ -1,3 +1,5 @@
+const popupFon = document.querySelectorAll('.popup');
+
 const popupProfileEdt = document.querySelector('#popup__profile-edt');
 const popupPhotoEdt = document.querySelector('#popup__photo-edt');
 const popupPhotoOpen = document.querySelector('#popup__photo-open');
@@ -134,12 +136,14 @@ function togglePhotoPopup() {
   openPopup (popupPhotoEdt);
   namePhotoInput.value = '';
   urlPhotoInput.value = '';
+  openPopupClear(popupPhotoEdt, config);
 }
 
 // открывает форму профиля
 function editHandler() {
   setFormValues();
   openPopup(popupProfileEdt);
+  openPopupClear(popupProfileEdt, config);
 }
 // сохранение формы
 function saveProfileForm(event) {
@@ -154,6 +158,20 @@ function savePhotoForm(event) {
   event.preventDefault();
   addNewPhoto();
 }
+// закрытие по Esc
+function closeEscPopup(evt) {
+  if (evt.key === 'Escape') {
+    popupFon.forEach((popup) => {
+      closePopup(popup)
+    })
+  }
+}
+// закрытие по оверу
+popupFon.forEach(popupElement => popupElement.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupElement)
+  }
+}))
 // события с кнопками
 formProfile.addEventListener('submit', saveProfileForm);
 popupPhotoEdt.addEventListener('submit', savePhotoForm);
@@ -163,3 +181,6 @@ closePopupProfile.addEventListener('click', function() {closePopup(popupProfileE
 addPhotoButton.addEventListener('click', togglePhotoPopup);
 closePopupPhoto.addEventListener('click', function() {closePopup(popupPhotoEdt)});
 closePopupPhotoOpen.addEventListener('click', function() {closePopup(popupPhotoOpen)});
+
+document.addEventListener('keydown', closeEscPopup);
+

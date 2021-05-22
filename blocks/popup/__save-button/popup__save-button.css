@@ -7,17 +7,24 @@
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
-  margin: 25px auto 23px;
+  margin: 45px auto 23px;
   cursor: pointer;
 }
 .popup__save-button:hover {
   opacity: 0.8;
   transition: opacity 0.3s ease-in-out;
 }
+.popup__save-button:disabled {
+  opacity: 0.2;
+  border: 1px solid #000000;
+  color: #000000;
+  background-color: #FFFFFF;
+  cursor: not-allowed;
+}
 @media (min-width:768px) {
   .popup__save-button {
     width: 358px;
-    margin: 42px auto 37px;
+    margin: 55px auto 37px;
     font-size: 18px;
     line-height: 22px;
   }

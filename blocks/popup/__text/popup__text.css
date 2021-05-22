@@ -5,13 +5,13 @@
   font-style: normal;
   font-weight: 900;
   color: #000000;
-  margin: 24px auto 67px 25px;
+  margin: 24px auto 50px 25px;
 }
 @media (min-width:768px) {
   .popup__text {
     max-width: 330px;
     font-size: 24px;
     line-height: 29px;
-    margin: 35px auto 35px 40px;
+    margin: 28px auto 16px 40px;
   }
 }
