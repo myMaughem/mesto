@@ -158,7 +158,7 @@ function closeEscPopup(evt) {
     }
   }
 // закрытие по оверу
-popupFones.forEach(popupElement => popupElement.addEventListener('click', function (evt) {
+popupFones.forEach(popupElement => popupElement.addEventListener('mousedown', function (evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(popupElement)
   }
