@@ -1,4 +1,4 @@
-const popupFon = document.querySelectorAll('.popup');
+const popupFones = document.querySelectorAll('.popup');
 
 const popupProfileEdt = document.querySelector('#popup__profile-edt');
 const popupPhotoEdt = document.querySelector('#popup__photo-edt');
@@ -107,29 +107,22 @@ function likePhoto (event) {
 function openPhoto(event) {
   openPopup(popupPhotoOpen);
   popupPhotoOpenBlock.src = event.target.src;
+  popupPhotoOpenBlock.alt = event.target.alt;
   popupPhotoOpenText.textContent = event.target.dataset.name;
 };
-
-const userData = {
-  name: 'Жак-Ив Кусто',
-  info: 'Исследователь океана',
-}
-// Обновляет профиль
-function updateProfile() {
-  profileTitle.textContent = userData.name;
-  profileInfo.textContent = userData.info;
-}
-// Заполняет форму и замыкает
+// Заполняет форму
 function setFormValues() {
-  nameInput.value = userData.name;
-  infoInput.value = userData.info;
+  nameInput.value = profileTitle.textContent;
+  infoInput.value = profileInfo.textContent;
 }
 // фун-ции открытия закрытия кнопок
 function openPopup(openPopup) {
   openPopup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeEscPopup)
 };
 function closePopup(closePopup) {
   closePopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeEscPopup)
 };
 
 function togglePhotoPopup() {
@@ -149,9 +142,8 @@ function editHandler() {
 function saveProfileForm(event) {
   event.preventDefault();
   closePopup (popupProfileEdt);
-  userData.name = nameInput.value;
-  userData.info = infoInput.value;
-  updateProfile();
+  profileTitle.textContent = nameInput.value;
+  profileInfo.textContent = infoInput.value;
 }
 // сохранение фото
 function savePhotoForm(event) {
@@ -161,13 +153,12 @@ function savePhotoForm(event) {
 // закрытие по Esc
 function closeEscPopup(evt) {
   if (evt.key === 'Escape') {
-    popupFon.forEach((popup) => {
-      closePopup(popup)
-    })
+  const popupOpened =  document.querySelector('.popup_opened')
+    closePopup(popupOpened);
+    }
   }
-}
 // закрытие по оверу
-popupFon.forEach(popupElement => popupElement.addEventListener('click', function (evt) {
+popupFones.forEach(popupElement => popupElement.addEventListener('click', function (evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(popupElement)
   }
@@ -181,6 +172,3 @@ closePopupProfile.addEventListener('click', function() {closePopup(popupProfileE
 addPhotoButton.addEventListener('click', togglePhotoPopup);
 closePopupPhoto.addEventListener('click', function() {closePopup(popupPhotoEdt)});
 closePopupPhotoOpen.addEventListener('click', function() {closePopup(popupPhotoOpen)});
-
-document.addEventListener('keydown', closeEscPopup);
-

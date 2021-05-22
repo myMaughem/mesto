@@ -37,9 +37,9 @@
 @import url(../blocks/popup/__input-text/popup__input-text.css);
 
 @import url(../blocks/popup/__photo-watch/popup__photo-watch.css);
-@import url(../blocks/popup/__photo-watch/popup__photo-watch-text.css);
+@import url(../blocks/popup/__photo-watch-text/popup__photo-watch-text.css);
 @import url(../blocks/popup/__close-icon/_photo-watch/popup__close-icon_photo-watch.css);
 
-@import url(../blocks/popup/__input-text/_type/_error/popup__input-text_type_error.css);
+@import url(../blocks/popup/__input-text/_type/popup__input-text_type_error.css);
 @import url(../blocks/popup/__input-error/popup__input-error.css);
 @import url(../blocks/popup/__input-error/_active/popup__input-error_active.css);

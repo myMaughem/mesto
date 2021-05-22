@@ -41,10 +41,10 @@
       <div class="popup__container">
         <h2 class="popup__text">Редактировать профиль</h2>
         <form class="popup__form" name="profile-form" id="profile-form" novalidate>
-          <input type="profile-name" name="fullname" placeholder="Введите имя" required minlength="2" maxlength="40"
+          <input type="text" name="fullname" placeholder="Введите имя" required minlength="2" maxlength="40"
             class="popup__input-text popup__input-text_profile_name" id="profile-name">
             <span class="profile-name-error popup__input-error"></span>
-          <input type="name-info" name="info" placeholder="Краткая информация о вас" required minlength="2" maxlength="200"
+          <input type="text" name="info" placeholder="Краткая информация о вас" required minlength="2" maxlength="200"
             class="popup__input-text popup__input-text_profile_info" id="profile-info">
             <span class="profile-info-error popup__input-error"></span>
           <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
@@ -57,7 +57,7 @@
       <div class="popup__container">
         <h2 class="popup__text">Новое место</h2>
         <form class="popup__form" name="profile-photo" id="profile-photo" novalidate>
-          <input type="photo-name" name="photo-name" placeholder="Название" required minlength="2" maxlength="30"
+          <input type="text" name="photo-name" placeholder="Название" required minlength="2" maxlength="30"
             class="popup__input-text popup__input-text_photo_name" id="photo-name">
             <span class="photo-name-error popup__input-error"></span>
           <input type="url" name="photo-url" placeholder="Ссылка на картинку" required
@@ -78,7 +78,7 @@
     </div>
 
 
-  <template class="element_template" id="element_template">
+  <template class="element-template" id="element_template">
     <div class="element">
       <img class="element__photo">
       <button type="button" aria-label="trash" class="element__trash"></button>
