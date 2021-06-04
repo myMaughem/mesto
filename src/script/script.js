@@ -28,6 +28,15 @@ const infoInput = document.querySelector('.popup__input-text_profile_info');
 const namePhotoInput = document.querySelector('.popup__input-text_photo_name');
 const urlPhotoInput = document.querySelector('.popup__input-text_photo_url');
 
+const formValidatorProfile = new FormValidator('#profile-form', '.popup__input-text', '.popup__save-button_profile',
+  'popup__input-text_type_error', 'popup__input-error_active')
+formValidatorProfile.enableValidation();
+
+const formValidatorPhoto = new FormValidator('#profile-photo', '.popup__input-text', '.popup__save-button_hpoto',
+  'popup__input-text_type_error', 'popup__input-error_active')
+formValidatorPhoto.enableValidation();
+
+
 const cards = [
   {
     text: 'Архыз',
@@ -93,14 +102,14 @@ function togglePhotoPopup() {
   openPopup(popupPhotoEdt);
   namePhotoInput.value = '';
   urlPhotoInput.value = '';
-  openPopupClear(popupPhotoEdt, config);
+  formValidatorPhoto.openPopupClear();
 }
 
 // открывает форму профиля
 function editHandler() {
   setFormValues();
   openPopup(popupProfileEdt);
-  openPopupClear(popupProfileEdt, config);
+  formValidatorProfile.openPopupClear();
 }
 // сохранение формы
 function saveProfileForm(event) {
