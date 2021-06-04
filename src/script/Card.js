@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
     #cardData
     #cardElement
     constructor(templateSelector, cardData) {

@@ -1,6 +1,8 @@
-class FormValidator {
-  constructor(formSelector, inputSelector, submitButtonSelector, inputErrorClass, inputErrorTextClass) {
-    this.formSelector = formSelector
+export default class FormValidator {
+  #hasListeners = false
+
+  constructor({ inputSelector, submitButtonSelector, inputErrorClass, inputErrorTextClass }, formElement) {
+    this.formElement = formElement
     this.inputSelector = inputSelector
     this.submitButtonSelector = submitButtonSelector
     this.inputErrorClass = inputErrorClass
@@ -8,42 +10,38 @@ class FormValidator {
   }
 
   enableValidation() {
-    const formList = Array.from(document.querySelectorAll(this.formSelector));
-    this.formList = formList;
-    formList.forEach((formElement) => {
-      this.formElement = formElement;
-      this.setEventListener();
-      this.openPopupClear();
-    });
+    this.#setEventListener();
+    this.#hideInputErrors();
   }
 
-  setEventListener() {
+  #setEventListener() {
+    if (this.#hasListeners) return;
+
     const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
     const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
-    this.inputList = inputList;
-    this.buttonElement = buttonElement;
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this.checkInputValidity(inputElement);
-        this.toggleButtonState();
+        this.#checkInputValidity(inputElement);
+        this.#toggleButtonState(buttonElement, inputList);
       });
     });
     this.formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this.toggleButtonState(buttonElement, inputList);
+
+    this.#hasListeners = true;
   }
 
-  checkInputValidity(inputElement) {
+  #checkInputValidity(inputElement) {
     if (inputElement.validity.valid) {
-      this.hideInputError(inputElement);
+      this.#hideInputError(inputElement);
     } else {
-      this.showInputError(inputElement);
+      this.#showInputError(inputElement);
     };
   }
 
-  hideInputError(inputElement) {
+  #hideInputError(inputElement) {
     const errorElement = this.formElement.querySelector(`.${inputElement.id}-error`)
     errorElement.classList.remove(this.inputErrorTextClass);
     errorElement.textContent = '';
@@ -51,7 +49,7 @@ class FormValidator {
     inputElement.classList.remove(this.inputErrorClass);
   }
 
-  showInputError(inputElement) {
+  #showInputError(inputElement) {
     const errorElement = this.formElement.querySelector(`.${inputElement.id}-error`)
 
     inputElement.classList.add(this.inputErrorClass);
@@ -59,36 +57,21 @@ class FormValidator {
     errorElement.textContent = inputElement.validationMessage;
   }
 
-  toggleButtonState(buttonElement, inputList) {
-    if (this.hasInvalidInput(inputList)) {
-      this.buttonElement.disabled = true;
-    } else {
-      this.buttonElement.disabled = false;
-    };
+  #toggleButtonState(buttonElement, inputList) {
+    buttonElement.disabled = this.#hasInvalidInput(inputList)
   }
 
-  hasInvalidInput(inputList) {
-    return this.inputList.some(inputElement => !inputElement.validity.valid)
+  #hasInvalidInput(inputList) {
+    return inputList.some(inputElement => !inputElement.validity.valid)
   };
 
-  openPopupClear() {
+  #hideInputErrors() {
     const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
     const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
-    this.inputList = inputList;
-    this.buttonElement = buttonElement;
 
-    this.formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    this.toggleButtonState(buttonElement, inputList);
+    this.#toggleButtonState(buttonElement, inputList);
     inputList.forEach((inputElement) => {
-      this.hideInputError(inputElement);
+      this.#hideInputError(inputElement);
     })
-  }
-
-  clearInputError() {
-    this.errorElement = errorElement;
-    const errorElement = formElement.querySelectorAll(`.${inputElement.id}-error`)
-    errorElement.textContent = '';
   }
 }

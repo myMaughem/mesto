@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const popupFones = document.querySelectorAll('.popup');
 
 const popupProfileEdt = document.querySelector('#popup__profile-edt');
@@ -28,14 +31,19 @@ const infoInput = document.querySelector('.popup__input-text_profile_info');
 const namePhotoInput = document.querySelector('.popup__input-text_photo_name');
 const urlPhotoInput = document.querySelector('.popup__input-text_photo_url');
 
-const formValidatorProfile = new FormValidator('#profile-form', '.popup__input-text', '.popup__save-button_profile',
-  'popup__input-text_type_error', 'popup__input-error_active')
-formValidatorProfile.enableValidation();
+const formValidatorProfile = new FormValidator({
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__save-button_profile',
+  inputErrorClass: 'popup__input-text_type_error',
+  inputErrorTextClass: 'popup__input-error_active'
+}, formProfile)
 
-const formValidatorPhoto = new FormValidator('#profile-photo', '.popup__input-text', '.popup__save-button_hpoto',
-  'popup__input-text_type_error', 'popup__input-error_active')
-formValidatorPhoto.enableValidation();
-
+const formValidatorPhoto = new FormValidator({
+  inputSelector: '.popup__input-text',
+  submitButtonSelector: '.popup__save-button_hpoto',
+  inputErrorClass: 'popup__input-text_type_error',
+  inputErrorTextClass: 'popup__input-error_active'
+}, formPhoto)
 
 const cards = [
   {
@@ -97,19 +105,19 @@ function closePopup(closePopup) {
   closePopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeEscPopup)
 };
-
+// открытие попапа добавления фото
 function togglePhotoPopup() {
   openPopup(popupPhotoEdt);
   namePhotoInput.value = '';
   urlPhotoInput.value = '';
-  formValidatorPhoto.openPopupClear();
+  formValidatorPhoto.enableValidation();
 }
 
 // открывает форму профиля
 function editHandler() {
   setFormValues();
   openPopup(popupProfileEdt);
-  formValidatorProfile.openPopupClear();
+  formValidatorProfile.enableValidation();
 }
 // сохранение формы
 function saveProfileForm(event) {
