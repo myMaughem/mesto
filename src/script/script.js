@@ -28,88 +28,52 @@ const infoInput = document.querySelector('.popup__input-text_profile_info');
 const namePhotoInput = document.querySelector('.popup__input-text_photo_name');
 const urlPhotoInput = document.querySelector('.popup__input-text_photo_url');
 
-const initialCards = [
+const cards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    text: 'Архыз',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    text: 'Челябинская область',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    text: 'Иваново',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    text: 'Камчатка',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    text: 'Холмогорский район',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    text: 'Байкал',
+    image: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-// где лягут фотки
-const elementsSection = document.querySelector('.elements');
-const photoWatchSection = document.querySelector('.photo-watch');
-// перебор массива
-initialCards.forEach(function (element) {
-  const newPhoto = createPhotoElement(element.name, element.link)
 
-  elementsSection.append(newPhoto);
+cards.forEach((item) => {
+  const card = new Card('#element_template', item);
+  const cardElement = card.generateCard();
+
+  document.querySelector('.elements').append(cardElement);
 });
-
-
-function createPhotoElement(name, link) {
-
-  const newPhoto = photoTemplate.content.querySelector('.element').cloneNode(true);
-  const textPhoto = newPhoto.querySelector('.element__photo-text');
-  const urlPhoto = newPhoto.querySelector('.element__photo');
-  const deleteBtn = newPhoto.querySelector('.element__trash');
-  const likeButton = newPhoto.querySelector('.element__like-button');
-
-  textPhoto.textContent = name;
-  urlPhoto.src = link;
-  urlPhoto.alt = name;
-  urlPhoto.dataset.name = name;
-
-  deleteBtn.addEventListener('click', delPhoto);
-  likeButton.addEventListener('click', likePhoto);
-  urlPhoto.addEventListener('click', openPhoto);
-
-  return newPhoto
-}
-
 // добавление новых фото
 function addNewPhoto() {
   const photoValue = namePhotoInput.value;
   const urlValue = urlPhotoInput.value;
 
-  const newPhoto = createPhotoElement(photoValue, urlValue)
+  const card = new Card('#element_template', { text: photoValue, image: urlValue });
+  const cardElement = card.generateCard();
 
-  elementsSection.prepend(newPhoto);
+  document.querySelector('.elements').prepend(cardElement);
+
   closePopup(popupPhotoEdt);
 };
 
-// лайки и удаление
-function delPhoto(event) {
-  event.target.closest('.element').remove();
-};
-function likePhoto(event) {
-  event.target.classList.toggle('element__like-button_active');
-};
-// открыть фото
-function openPhoto(event) {
-  openPopup(popupPhotoOpen);
-  popupPhotoOpenBlock.src = event.target.src;
-  popupPhotoOpenBlock.alt = event.target.alt;
-  popupPhotoOpenText.textContent = event.target.dataset.name;
-};
 // Заполняет форму
 function setFormValues() {
   nameInput.value = profileTitle.textContent;

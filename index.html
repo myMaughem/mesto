@@ -36,46 +36,46 @@
     <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
   </footer>
 
- 
-    <div class="popup" id="popup__profile-edt">
-      <div class="popup__container">
-        <h2 class="popup__text">Редактировать профиль</h2>
-        <form class="popup__form" name="profile-form" id="profile-form" novalidate>
-          <input type="text" name="fullname" placeholder="Введите имя" required minlength="2" maxlength="40"
-            class="popup__input-text popup__input-text_profile_name" id="profile-name">
-            <span class="profile-name-error popup__input-error"></span>
-          <input type="text" name="info" placeholder="Краткая информация о вас" required minlength="2" maxlength="200"
-            class="popup__input-text popup__input-text_profile_info" id="profile-info">
-            <span class="profile-info-error popup__input-error"></span>
-          <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
-        </form>
-        <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_profile "></button>
-      </div>
-    </div>
 
-    <div class="popup" id="popup__photo-edt">
-      <div class="popup__container">
-        <h2 class="popup__text">Новое место</h2>
-        <form class="popup__form" name="profile-photo" id="profile-photo" novalidate>
-          <input type="text" name="photo-name" placeholder="Название" required minlength="2" maxlength="30"
-            class="popup__input-text popup__input-text_photo_name" id="photo-name">
-            <span class="photo-name-error popup__input-error"></span>
-          <input type="url" name="photo-url" placeholder="Ссылка на картинку" required
-            class="popup__input-text popup__input-text_photo_url" id="photo-url">
-            <span class="photo-url-error popup__input-error"></span>
-          <button type="submit" class="popup__save-button popup__save-button_hpoto">Создать</button>
-        </form>
-        <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_photo"></button>
-      </div>
+  <div class="popup" id="popup__profile-edt">
+    <div class="popup__container">
+      <h2 class="popup__text">Редактировать профиль</h2>
+      <form class="popup__form" name="profile-form" id="profile-form" novalidate>
+        <input type="text" name="fullname" placeholder="Введите имя" required minlength="2" maxlength="40"
+          class="popup__input-text popup__input-text_profile_name" id="profile-name">
+        <span class="profile-name-error popup__input-error"></span>
+        <input type="text" name="info" placeholder="Краткая информация о вас" required minlength="2" maxlength="200"
+          class="popup__input-text popup__input-text_profile_info" id="profile-info">
+        <span class="profile-info-error popup__input-error"></span>
+        <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
+      </form>
+      <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_profile "></button>
     </div>
+  </div>
 
-    <div class="popup" id="popup__photo-open">
-      <div class="popup__photo-block">
-        <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_photo-watch"></button>
-        <img class="popup__photo-watch" alt="#" src="#">
-        <p class="popup__photo-watch-text"></p>
-      </div>
+  <div class="popup" id="popup__photo-edt">
+    <div class="popup__container">
+      <h2 class="popup__text">Новое место</h2>
+      <form class="popup__form" name="profile-photo" id="profile-photo" novalidate>
+        <input type="text" name="photo-name" placeholder="Название" required minlength="2" maxlength="30"
+          class="popup__input-text popup__input-text_photo_name" id="photo-name">
+        <span class="photo-name-error popup__input-error"></span>
+        <input type="url" name="photo-url" placeholder="Ссылка на картинку" required
+          class="popup__input-text popup__input-text_photo_url" id="photo-url">
+        <span class="photo-url-error popup__input-error"></span>
+        <button type="submit" class="popup__save-button popup__save-button_hpoto">Создать</button>
+      </form>
+      <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_photo"></button>
     </div>
+  </div>
+
+  <div class="popup" id="popup__photo-open">
+    <div class="popup__photo-block">
+      <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_photo-watch"></button>
+      <img class="popup__photo-watch" alt="#" src="#">
+      <p class="popup__photo-watch-text"></p>
+    </div>
+  </div>
 
 
   <template class="element-template" id="element_template">
@@ -89,7 +89,9 @@
     </div>
   </template>
 
-  <script src="./src/script/validate.js"></script>
+  <!-- <script src="./src/script/validate.js"></script> -->
+  <script src="./src/script/FormValidator.js"></script>
+  <script src="./src/script/Card.js"></script>
   <script src="./src/script/script.js"></script>
 
 </body>
