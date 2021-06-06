@@ -49,14 +49,4 @@ export default class Card {
         event.target.closest('.element').remove();
     }
 
-    // openCard = (event) => {
-    //     const popupPhotoOpen = document.querySelector('#popup__photo-open');
-    //     const popupPhotoOpenBlock = document.querySelector('.popup__photo-watch');
-    //     const popupPhotoOpenText = document.querySelector('.popup__photo-watch-text');
-    //     popupPhotoOpen.classList.add('popup_opened');
-    //     popupPhotoOpenBlock.src = event.target.src;
-    //     popupPhotoOpenBlock.alt = event.target.alt;
-    //     popupPhotoOpenText.textContent = event.target.dataset.text;
-    // }
-      
 }

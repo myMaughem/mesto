@@ -83,7 +83,7 @@ cards.forEach((item) => {
 });
 
 // открытие фото 
-function openPhoto(event) {
+export function openPhoto(event) {
   openPopup(popupPhotoOpen);
   popupPhotoOpenBlock.src = event.target.src;
   popupPhotoOpenBlock.alt = event.target.alt;
