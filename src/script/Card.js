@@ -22,15 +22,11 @@ export default class Card {
     addEvents() {
         const likeBtn = this.#cardElement.querySelector('.element__like-button');
         const trashBtn = this.#cardElement.querySelector('.element__trash');
-        const image = this.#cardElement.querySelector('.element__photo');
-        const text = this.#cardElement.querySelector('.element__photo-text');
-        const popupPhotoOpenBlock = this.#cardElement.querySelector('.popup__photo-watch');
-        const popupPhotoOpenText = this.#cardElement.querySelector('.popup__photo-watch-text');
-
+        // const image = this.#cardElement.querySelector('.element__photo');
 
         likeBtn.addEventListener('click', this.likeCard)
         trashBtn.addEventListener('click', this.deleteCard)
-        image.addEventListener('click', this.openCard)
+        // image.addEventListener('click', this.openCard)
     }
 
     getTemplate(templateSelector) {
@@ -53,15 +49,14 @@ export default class Card {
         event.target.closest('.element').remove();
     }
 
-    openCard(event) {
-        openPopup(popupPhotoOpen);
-        popupPhotoOpenBlock.src = event.target.src;
-        popupPhotoOpenBlock.alt = event.target.alt;
-        popupPhotoOpenText.textContent = event.target.dataset.text;
-    }
-
-    openPopup(openPopup) {
-        openPopup.classList.add('popup_opened');
-    }
-
+    // openCard = (event) => {
+    //     const popupPhotoOpen = document.querySelector('#popup__photo-open');
+    //     const popupPhotoOpenBlock = document.querySelector('.popup__photo-watch');
+    //     const popupPhotoOpenText = document.querySelector('.popup__photo-watch-text');
+    //     popupPhotoOpen.classList.add('popup_opened');
+    //     popupPhotoOpenBlock.src = event.target.src;
+    //     popupPhotoOpenBlock.alt = event.target.alt;
+    //     popupPhotoOpenText.textContent = event.target.dataset.text;
+    // }
+      
 }

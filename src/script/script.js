@@ -75,9 +75,21 @@ const cards = [
 cards.forEach((item) => {
   const card = new Card('#element_template', item);
   const cardElement = card.generateCard();
+  const photoElement = cardElement.querySelector('.element__photo');
+  const textElement = cardElement.querySelector('.element__photo-text');
 
   document.querySelector('.elements').append(cardElement);
+  photoElement.addEventListener('click', openPhoto);
 });
+
+// открытие фото 
+function openPhoto(event) {
+  openPopup(popupPhotoOpen);
+  popupPhotoOpenBlock.src = event.target.src;
+  popupPhotoOpenBlock.alt = event.target.alt;
+  popupPhotoOpenText.textContent = event.target.text;
+};
+
 // добавление новых фото
 function addNewPhoto() {
   const photoValue = namePhotoInput.value;
@@ -85,9 +97,12 @@ function addNewPhoto() {
 
   const card = new Card('#element_template', { text: photoValue, image: urlValue });
   const cardElement = card.generateCard();
+  const photoElement = cardElement.querySelector('.element__photo');
+  const textElement = cardElement.querySelector('.element__photo-text');
 
   document.querySelector('.elements').prepend(cardElement);
 
+  photoElement.addEventListener('click', openPhoto);
   closePopup(popupPhotoEdt);
 };
 
@@ -96,15 +111,17 @@ function setFormValues() {
   nameInput.value = profileTitle.textContent;
   infoInput.value = profileInfo.textContent;
 }
-// фун-ции открытия закрытия кнопок
+// функции открытия закрытия
 function openPopup(openPopup) {
   openPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closeEscPopup)
 };
+
 function closePopup(closePopup) {
   closePopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeEscPopup)
 };
+
 // открытие попапа добавления фото
 function togglePhotoPopup() {
   openPopup(popupPhotoEdt);
