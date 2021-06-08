@@ -14,12 +14,8 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close-icon_profile');
 const closePopupPhoto = document.querySelector('.popup__close-icon_photo');
 const closePopupPhotoOpen = document.querySelector('.popup__close-icon_photo-watch');
-const saveButton = document.querySelector('.popup__save-button_profile');
 
 const addPhotoButton = document.querySelector('.profile__add-button');
-const saveNewPhotoButton = document.querySelector('.popup__save-button_hpoto');
-// шаблон
-const photoTemplate = document.querySelector('#element_template');
 
 const formProfile = document.querySelector('#profile-form');
 const formPhoto = document.querySelector('#profile-photo');
@@ -72,45 +68,48 @@ const cards = [
   }
 ];
 
-cards.forEach((item) => {
-  const card = new Card('#element_template', item);
-  const cardElement = card.generateCard();
-  const photoElement = cardElement.querySelector('.element__photo');
-  const textElement = cardElement.querySelector('.element__photo-text');
+formValidatorPhoto.enableValidation();
+formValidatorProfile.enableValidation();
 
+cards.forEach((item) => {
+  const cardElement = addCard(item);
   document.querySelector('.elements').append(cardElement);
-  photoElement.addEventListener('click', openPhoto);
 });
 
 // открытие фото 
-export function openPhoto(event) {
+function openPhoto(image, text) {
+  popupPhotoOpenBlock.src = image;
+  popupPhotoOpenBlock.alt = text;
+  popupPhotoOpenText.textContent = text;
+  
   openPopup(popupPhotoOpen);
-  popupPhotoOpenBlock.src = event.target.src;
-  popupPhotoOpenBlock.alt = event.target.alt;
-  popupPhotoOpenText.textContent = event.target.text;
 };
+
+function addCard(item) {
+  const card = new Card('#element_template', item);
+  card.onOpenPhoto(openPhoto)
+  return card.generateCard();
+}
 
 // добавление новых фото
 function addNewPhoto() {
   const photoValue = namePhotoInput.value;
   const urlValue = urlPhotoInput.value;
 
-  const card = new Card('#element_template', { text: photoValue, image: urlValue });
-  const cardElement = card.generateCard();
-  const photoElement = cardElement.querySelector('.element__photo');
-  const textElement = cardElement.querySelector('.element__photo-text');
+  const cardElement = addCard({ text: photoValue, image: urlValue})
 
   document.querySelector('.elements').prepend(cardElement);
 
-  photoElement.addEventListener('click', openPhoto);
   closePopup(popupPhotoEdt);
 };
 
 // Заполняет форму
 function setFormValues() {
+  formProfile.reset();
   nameInput.value = profileTitle.textContent;
   infoInput.value = profileInfo.textContent;
 }
+
 // функции открытия закрытия
 function openPopup(openPopup) {
   openPopup.classList.add('popup_opened');
@@ -124,17 +123,14 @@ function closePopup(closePopup) {
 
 // открытие попапа добавления фото
 function togglePhotoPopup() {
+  formPhoto.reset();
   openPopup(popupPhotoEdt);
-  namePhotoInput.value = '';
-  urlPhotoInput.value = '';
-  formValidatorPhoto.enableValidation();
 }
 
 // открывает форму профиля
 function editHandler() {
   setFormValues();
   openPopup(popupProfileEdt);
-  formValidatorProfile.enableValidation();
 }
 // сохранение формы
 function saveProfileForm(event) {

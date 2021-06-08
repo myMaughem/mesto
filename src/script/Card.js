@@ -1,32 +1,36 @@
 export default class Card {
-    #cardData
-    #cardElement
-    constructor(templateSelector, cardData) {
-        this.#cardData = cardData;
-        this.#cardElement = this.getTemplate(templateSelector)
+    _cardData
+    _cardElement
+    _openPhotoCallback
+    
+
+    constructor(templateSelector, cardData, openPhoto) {
+        this._cardData = cardData;
+        this._cardElement = this.getTemplate(templateSelector)
+        this._openPhoto = openPhoto;
 
         this.fillData()
         this.addEvents()
     }
 
     fillData() {
-        const imageElement = this.#cardElement.querySelector('.element__photo')
+        const imageElement = this._cardElement.querySelector('.element__photo')
 
-        imageElement.src = this.#cardData.image;
-        imageElement.alt = this.#cardData.text;
-        imageElement.dataset.text = this.#cardData.text;
+        imageElement.src = this._cardData.image;
+        imageElement.alt = this._cardData.text;
+        imageElement.dataset.text = this._cardData.text;
 
-        this.#cardElement.querySelector('.element__photo-text').textContent = this.#cardData.text;
+        this._cardElement.querySelector('.element__photo-text').textContent = this._cardData.text;
     }
 
     addEvents() {
-        const likeBtn = this.#cardElement.querySelector('.element__like-button');
-        const trashBtn = this.#cardElement.querySelector('.element__trash');
-        // const image = this.#cardElement.querySelector('.element__photo');
+        const likeBtn = this._cardElement.querySelector('.element__like-button');
+        const trashBtn = this._cardElement.querySelector('.element__trash');
+        const photo = this._cardElement.querySelector('.element__photo');
 
         likeBtn.addEventListener('click', this.likeCard)
         trashBtn.addEventListener('click', this.deleteCard)
-        // image.addEventListener('click', this.openCard)
+        photo.addEventListener('click', this.openPhotoHandler)
     }
 
     getTemplate(templateSelector) {
@@ -38,7 +42,7 @@ export default class Card {
     }
 
     generateCard() {
-        return this.#cardElement
+        return this._cardElement
     }
 
     likeCard(event) {
@@ -47,6 +51,16 @@ export default class Card {
 
     deleteCard(event) {
         event.target.closest('.element').remove();
+    }
+
+    onOpenPhoto(callback) {
+        this._openPhotoCallback = callback
+    }
+
+    openPhotoHandler = (event) => {
+        if (this._openPhotoCallback) {
+            this._openPhotoCallback(event.target.src, event.target.alt)
+        }
     }
 
 }
