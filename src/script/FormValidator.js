@@ -7,6 +7,12 @@ export default class FormValidator {
     this.submitButtonSelector = submitButtonSelector
     this.inputErrorClass = inputErrorClass
     this.inputErrorTextClass = inputErrorTextClass
+
+    const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
+    const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
+
+    this.inputList = inputList
+    this.buttonElement = buttonElement
   }
 
   enableValidation() {
@@ -16,17 +22,15 @@ export default class FormValidator {
   _setEventListener() {
     if (this._hasListeners) return;
 
-    const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
-    const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
 // сброс ошибок формы
     this.formElement.addEventListener('reset', () => {
       this.hideInputErrors();
     });
 
-    inputList.forEach((inputElement) => {
+    this.inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(buttonElement, inputList);
+        this._toggleButtonState();
       });
     });
     this.formElement.addEventListener('submit', (evt) => {
@@ -61,21 +65,18 @@ export default class FormValidator {
   }
 
 // доступность кнопки save
-  _toggleButtonState(buttonElement, inputList) {
-    buttonElement.disabled = this._hasInvalidInput(inputList)
+  _toggleButtonState() {
+    this.buttonElement.disabled = this._hasInvalidInput()
   }
-  
+
 //  проверка поля на валидность
-  _hasInvalidInput(inputList) {
-    return inputList.some(inputElement => !inputElement.validity.valid)
+  _hasInvalidInput() {
+    return this.inputList.some(inputElement => !inputElement.validity.valid)
   };
 
   hideInputErrors() {
-    const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
-    const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
-
-    this._toggleButtonState(buttonElement, inputList);
-    inputList.forEach((inputElement) => {
+    this._toggleButtonState();
+    this.inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
   }
