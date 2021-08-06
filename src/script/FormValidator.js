@@ -18,9 +18,9 @@ export default class FormValidator {
 
     const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
     const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
-
+// сброс ошибок формы
     this.formElement.addEventListener('reset', () => {
-      this._hideInputErrors();
+      this.hideInputErrors();
     });
 
     inputList.forEach((inputElement) => {
@@ -35,7 +35,7 @@ export default class FormValidator {
 
     this._hasListeners = true;
   }
-
+  // скрытие/открытие ошибок инпутов
   _checkInputValidity(inputElement) {
     if (inputElement.validity.valid) {
       this._hideInputError(inputElement);
@@ -59,22 +59,22 @@ export default class FormValidator {
     errorElement.classList.add(this.inputErrorTextClass);
     errorElement.textContent = inputElement.validationMessage;
   }
-
+// доступность кнопки save
   _toggleButtonState(buttonElement, inputList) {
     buttonElement.disabled = this._hasInvalidInput(inputList)
   }
-
+//  проверка поля на валидность
   _hasInvalidInput(inputList) {
     return inputList.some(inputElement => !inputElement.validity.valid)
   };
 
-  _hideInputErrors() {
+  hideInputErrors() {
     const inputList = Array.from(this.formElement.querySelectorAll(this.inputSelector));
     const buttonElement = this.formElement.querySelector(this.submitButtonSelector);
 
     this._toggleButtonState(buttonElement, inputList);
     inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
-    })
+    });
   }
 }
