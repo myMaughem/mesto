@@ -59,10 +59,12 @@ export default class FormValidator {
     errorElement.classList.add(this.inputErrorTextClass);
     errorElement.textContent = inputElement.validationMessage;
   }
+
 // доступность кнопки save
   _toggleButtonState(buttonElement, inputList) {
     buttonElement.disabled = this._hasInvalidInput(inputList)
   }
+  
 //  проверка поля на валидность
   _hasInvalidInput(inputList) {
     return inputList.some(inputElement => !inputElement.validity.valid)
