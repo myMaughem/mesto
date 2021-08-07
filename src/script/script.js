@@ -112,7 +112,6 @@ function setFormValues() {
 
 // функции открытия закрытия
 function openPopup(openPopup) {
-  formValidatorPhoto.hideInputErrors();
   openPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closeEscPopup)
 };
@@ -125,6 +124,7 @@ function closePopup(closePopup) {
 // открытие попапа добавления фото
 function togglePhotoPopup() {
   formPhoto.reset();
+  formValidatorPhoto.hideInputErrors();
   openPopup(popupPhotoEdt);
 }
 
