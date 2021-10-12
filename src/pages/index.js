@@ -1,6 +1,6 @@
-import './pages/index.css'
+import '../pages/index.css';
 
-import { items, cardListSection, profileOpenButton, savePhotoBtn, photoNameInput, photoImageInput, formProfile, formPhoto } from '../utils/constants.js'
+import { items, cardListSection, profileOpenButton, savePhotoBtn, photoNameInput, photoImageInput, formProfile, formPhoto } from '../utils/constants.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
