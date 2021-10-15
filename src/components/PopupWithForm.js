@@ -12,6 +12,8 @@ export default class PopupWithForm extends Popup {
 
   open() {
     super.open();
+    const popupBtn = this.popup.querySelector('.popup__save-button')
+    popupBtn.disabled = true;
   }
   // при закрытии попапа форма должна ещё и сбрасываться.
   close() {
