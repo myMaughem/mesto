@@ -1,12 +1,10 @@
-import { popupWithImage } from "../pages/index.js";
-import { popupImagePhoto, popupImageText } from "../utils/constants.js"
-
 export default class Card {
 
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this.cardSelector = cardSelector;
     this.text = data.text;
     this.image = data.image;
+    this.handleCardClick = handleCardClick
   }
 
   getTemplate() {
@@ -20,7 +18,6 @@ export default class Card {
   }
   generateCard() {
     this.element = this.getTemplate();
-    this.handleCardClick();
     this.addEvents();
 
     this.element.querySelector('.element__photo').src = this.image;
@@ -29,23 +26,17 @@ export default class Card {
 
     return this.element;
   }
-  handleCardClick() {
-    const photoElement = this.element.querySelector('.element__photo');
-    photoElement.addEventListener('click', () => {
-      popupWithImage.open();
-      popupWithImage.setEventListeners();
-      popupImagePhoto.src = this.image;
-      popupImagePhoto.alt = this.text;
-      popupImageText.textContent = this.text;
-    })
-  }
 
   addEvents() {
     const likeBtn = this.element.querySelector('.element__like-button');
     const trashBtn = this.element.querySelector('.element__trash');
+    const photoElement = this.element.querySelector('.element__photo');
 
     likeBtn.addEventListener('click', this.likeCard)
     trashBtn.addEventListener('click', this.deleteCard)
+    photoElement.addEventListener('click', () => {
+      this.handleCardClick(this.text, this.image)
+    })
   }
 
   likeCard(event) {

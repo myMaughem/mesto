@@ -1,5 +1,3 @@
-import { profileTitle, profileSubtitle, profileSaveBtn } from "../utils/constants.js"
-
 export default class UserInfo {
   constructor(nameSelector, infoSelector) {
     this.name = document.querySelector(nameSelector);
@@ -7,14 +5,11 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    this.name.value = profileTitle.textContent;
-    this.info.value = profileSubtitle.textContent;
+    return { name: this.name.textContent, info: this.info.textContent }
   }
 
-  setUserInfo() {
-    profileSaveBtn.addEventListener('click', () => {
-      profileTitle.textContent = this.name.value;
-      profileSubtitle.textContent = this.info.value;
-    })
+  setUserInfo(name, info) {
+    this.name.textContent = name;
+    this.info.textContent = info;
   }
 }

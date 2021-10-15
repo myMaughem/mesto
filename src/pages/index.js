@@ -1,6 +1,7 @@
 import '../pages/index.css';
 
-import { items, cardListSection, profileOpenButton, savePhotoBtn, photoNameInput, photoImageInput, formProfile, formPhoto } from '../utils/constants.js';
+import { cardItemsData, cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput } from '../utils/constants.js';
+import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -22,39 +23,58 @@ const formValidatorPhoto = new FormValidator({
   inputErrorTextClass: 'popup__input-error_active'
 }, formPhoto)
 
+const popupWithImage = new PopupWithImage('#popup__photo-open');
+
 formValidatorPhoto.enableValidation();
 formValidatorProfile.enableValidation();
 
-const cardList = new Section({
-  data: items
-}, cardListSection);
-cardList.renderItems();
+// отрисовка попапа с фото
+const cardClickHandler = (text, image) => {
+  popupWithImage.open(text, image)
+}
+// генерация элемента карточки для отрисовки
+const cardItemRenderer = (data) => {
+  const card = new Card(data, '#element_template', cardClickHandler)
 
-export const popupWithImage = new PopupWithImage('#popup__photo-open');
+  return card.generateCard();
+}
+// куда и что отрисовывает
+const cardListSection = new Section({
+  items: cardItemsData,
+  renderer: cardItemRenderer
+}, cardListSectionSelector);
 
-const popupProfile = new PopupWithProfileForm('#popup__profile-edt');
-popupProfile.open();
-popupProfile.setEventListeners();
+cardListSection.renderer();
 
-const popupPhotoEdt = new PopupWithPhotoForm('#popup__photo-edt');
-popupPhotoEdt.open();
-popupPhotoEdt.setEventListeners();
+
+const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const popupProfile = new PopupWithProfileForm('#popup__profile-edt', ({ fullname, info }) => {
+  userInfo.setUserInfo(fullname, info);
+});
 
 profileOpenButton.addEventListener('click', () => {
-  const userInfo = new UserInfo('.popup__input-text_profile_name', '.popup__input-text_profile_info');
-  userInfo.getUserInfo();
-  userInfo.setUserInfo();
+  popupProfile.open()
+});
+
+profileOpenButton.addEventListener('click', () => {
+  const { name, info } = userInfo.getUserInfo();
+  profileNameInput.value = name;
+  profileInfoInput.value = info;
 })
 
-savePhotoBtn.addEventListener('click', () => {
-  const inputPhoto = [
-    {
-      text: photoNameInput.value,
-      image: photoImageInput.value
-    }
-  ];
-  const card = new Section({
-    data: inputPhoto
-  }, cardListSection);
-  card.renderItems();
+const popupPhotoEdt = new PopupWithPhotoForm('#popup__photo-edt', (formInputValues) => {
+  const newCardItem = cardItemRenderer({
+    text: formInputValues['photo-name'],
+    image: formInputValues['photo-url']
+  })
+  cardListSection.addItem(newCardItem);
+});
+
+addPhotoOpenButton.addEventListener('click', () => {
+  const photoInfo = new UserInfo('.popup__input-text_photo_name', '.popup__input-text_photo_url')
+  photoInfo.getUserInfo();
+})
+
+addPhotoOpenButton.addEventListener('click', () => {
+  popupPhotoEdt.open();
 })
