@@ -2,10 +2,11 @@ import Popup from "./Popup.js"
 
 // Кроме селектора попапа принимает в конструктор колбэк сабмита формы.
 export default class PopupWithForm extends Popup {
-  constructor(popupSelector, handleFormSubmit) {
+  constructor(popupSelector, handleFormSubmit, isAsync = false) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this.form = this.popup.querySelector('.popup__form');
+    this.form = this.popup.querySelector('form');
+    this.isAsync = isAsync
 
     this.setEventListeners()
   }
@@ -18,7 +19,7 @@ export default class PopupWithForm extends Popup {
   // при закрытии попапа форма должна ещё и сбрасываться.
   close() {
     super.close();
-    
+
     this.form.reset();
   }
   // собирает данные всех полей формы.
@@ -35,11 +36,31 @@ export default class PopupWithForm extends Popup {
     this.form.addEventListener('submit', (evt) => {
       evt.preventDefault();
 
-      this._handleFormSubmit(this._getInputValues());
+      const resolve = this.isAsync ? this.pending() : undefined
 
-      this.close()
+      this._handleFormSubmit(this._getInputValues(), resolve);
+
+      if (!resolve) {
+        this.close()
+      }
     })
 
     super.setEventListeners();
+  }
+  // Ожидание сохранения
+  pending() {
+    const submitBtn = this.popup.querySelector('button[type=submit]')
+    const submitTextBeforePending = submitBtn.textContent
+
+    submitBtn.disabled = true
+    submitBtn.textContent = 'Сохранение...'
+
+    // Resolve
+    return () => {
+      this.close()
+
+      submitBtn.disabled = false
+      submitBtn.textContent = submitTextBeforePending
+    }
   }
 }

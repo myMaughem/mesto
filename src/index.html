@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Место</title>
 </head>
 
@@ -18,6 +18,7 @@
 
     <section class="profile">
       <img src="<%=require('./images/Avatar.png')%>" alt="Аватар профиля" class="profile__avatar">
+      <button type="button" aria-label="edit avatar" class="profile__avatar-button"></button>
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <p class="profile__subtitle">Исследователь океана</p>
@@ -36,6 +37,18 @@
     <p class="footer__copyright">&#169; 2021 Mesto Russia</p>
   </footer>
 
+  <div class="popup" id="popup__profile-edt-avatar">
+    <div class="popup__container">
+      <h2 class="popup__text">Обновить аватар</h2>
+      <form class="popup__form" name="profile-avatar-form" id="profile-avatar-form" novalidate>
+        <input type="url" name="avatar-photo-url" placeholder="Ссылка на картинку" required
+          class="popup__input-text popup__input-text_avatar_url" id="photo-url">
+        <span class="photo-url-error popup__input-error"></span>
+        <button type="submit" class="popup__save-button popup__save-button_profile-avatar">Сохранить</button>
+      </form>
+      <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_profile"></button>
+    </div>
+  </div>
 
   <div class="popup" id="popup__profile-edt">
     <div class="popup__container">
@@ -77,6 +90,18 @@
     </div>
   </div>
 
+  <div class="popup" id="popup__photo-delete">
+    <div class="popup__container">
+      <form class="popup__form" name="delete-photo" id="delete-photo" novalidate>
+        <h2 class="popup__text">Вы уверены?</h2>
+        <button type="button" data-confirm="true" class="popup__save-button popup__save-button_delete-photo">
+          Да
+        </button>
+      </form>
+      <button type="button" aria-label="close window" class="popup__close-icon popup__close-icon_delete"></button>
+    </div>
+  </div>
+
 
   <template class="element-template" id="element_template">
     <div class="element">
@@ -84,12 +109,15 @@
       <button type="button" aria-label="trash" class="element__trash"></button>
       <div class="element__photo-info">
         <h2 class="element__photo-text"></h2>
-        <button type="button" aria-label="like" class="element__like-button"></button>
+        <div class="element__like-panel">
+          <button type="button" aria-label="like" class="element__like-button"></button>
+          <h3 class="element__like-count"></h3>
+        </div>
       </div>
     </div>
   </template>
 
-  <script type="module" src="./pages/index.js"></script>
+  <!-- <script type="module" src="./pages/index.js"></script> -->
 
 </body>
 

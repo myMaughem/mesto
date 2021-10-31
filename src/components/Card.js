@@ -1,10 +1,16 @@
 export default class Card {
 
-  constructor(data, cardSelector, handleCardClick) {
+  constructor(data, cardSelector, handlers) {
+    this.data = data;
+
+    this.data.isCardLiked = this.isCardLiked(data.userId)
+    this.data.isAvailableToRemove = data.userId === data.owner._id
+
     this.cardSelector = cardSelector;
-    this.text = data.text;
-    this.image = data.image;
-    this.handleCardClick = handleCardClick
+
+    this.handleCardClick = handlers.onCardClick;
+    this.handleLikeClick = handlers.onLikeClick;
+    this.handleTrashClick = handlers.onTrashClick;
   }
 
   getTemplate() {
@@ -16,15 +22,32 @@ export default class Card {
 
     return cardElement;
   }
+
   generateCard() {
     this.element = this.getTemplate();
     this.addEvents();
+    const trashBtn = this.element.querySelector('.element__trash');
 
-    this.element.querySelector('.element__photo').src = this.image;
-    this.element.querySelector('.element__photo').alt = this.text;
-    this.element.querySelector('.element__photo-text').textContent = this.text;
+    this.element.querySelector('.element__trash').classList.toggle('element__trash_hidden', !this.data.isAvailableToRemove)
+    this.element.querySelector('.element__photo').src = this.data.link;
+    this.element.querySelector('.element__photo').alt = this.data.name;
+    this.element.querySelector('.element__photo-text').textContent = this.data.name;
+
+    this.renderLikes()
 
     return this.element;
+  }
+
+  updateLikes(userId, likes) {
+    this.data.likes = likes
+    this.data.isCardLiked = this.isCardLiked(userId)
+
+    this.renderLikes()
+  }
+
+  renderLikes() {
+    this.element.querySelector('.element__like-count').textContent = this.data.likes.length;
+    this.element.querySelector('.element__like-button').classList.toggle('element__like-button_active', this.data.isCardLiked);
   }
 
   addEvents() {
@@ -32,18 +55,25 @@ export default class Card {
     const trashBtn = this.element.querySelector('.element__trash');
     const photoElement = this.element.querySelector('.element__photo');
 
-    likeBtn.addEventListener('click', this.likeCard)
-    trashBtn.addEventListener('click', this.deleteCard)
+    likeBtn.addEventListener('click', (event) => this.likeCard(event))
+
+    trashBtn.addEventListener('click', () => this.handleTrashClick(this.data._id))
     photoElement.addEventListener('click', () => {
-      this.handleCardClick(this.text, this.image)
+      this.handleCardClick(this.data.name, this.data.link)
     })
   }
 
   likeCard(event) {
     event.target.classList.toggle('element__like-button_active');
+
+    this.handleLikeClick(this.data._id)
   }
 
-  deleteCard(event) {
-    event.target.closest('.element').remove();
+  deleteCard() {
+    this.element.remove();
+  }
+
+  isCardLiked(userId) {
+    return this.data.likes.some(card => card._id === userId)
   }
 }

@@ -29,9 +29,12 @@ export const cardListSectionSelector = ('.elements');
 
 export const formProfile = document.querySelector('#profile-form');
 export const formPhoto = document.querySelector('#profile-photo');
+export const formAvatar = document.querySelector('#profile-avatar-form');
 
 export const profileOpenButton = document.querySelector('.profile__edit-button');
 export const addPhotoOpenButton = document.querySelector('.profile__add-button');
+export const profileAvatarButton = document.querySelector('.profile__avatar-button');
 
 export const profileNameInput = document.querySelector('.popup__input-text_profile_name');
 export const profileInfoInput = document.querySelector('.popup__input-text_profile_info');
+export const profileAvatarInput = document.querySelector('.popup__input-text_avatar_url');

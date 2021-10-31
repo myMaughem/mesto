@@ -1,0 +1,23 @@
+.profile__avatar-button {
+  width: 120px;
+  height: 120px;
+  margin-left: 81px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.411);
+  background-image: url(../../../images/redaction-profile.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.profile__avatar-button:hover {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+@media (min-width:768px) {
+  .profile__avatar-button {
+    margin: 0;
+  }
+}

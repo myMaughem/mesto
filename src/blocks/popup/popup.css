@@ -12,5 +12,5 @@
   left: 0px;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 1s, opacity 0.5s linear;
+  transition: visibility 1s, opacity 0.3s linear;
 }

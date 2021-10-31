@@ -5,17 +5,28 @@ export default class Section {
     this.container = document.querySelector(containerSelector);
   }
 
-  renderer() {
+  renderer(direction = 'after') {
     this.container.innerHTML = '';
 
     this.items.forEach(itemData => {
       const itemElement = this.itemRenderer(itemData);
 
-      this.addItem(itemElement);
+      this.addItem(itemElement, direction);
     })
+    return this;
   }
 
-  addItem(element) {
-    this.container.prepend(element);
+  addItem(element, direction) {
+    if (direction === 'after') {
+      this.container.append(element);
+    } else {
+      this.container.prepend(element);
+    }
+    return this;
+  }
+
+  setItems(items) {
+    this.items = items;
+    return this;
   }
 }
