@@ -1,4 +1,4 @@
-import '../pages/index.css';
+// import '../pages/index.css';
 
 import { cardItemsData, cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput, profileAvatarButton, formAvatar, profileAvatarInput } from '../utils/constants.js';
 import Card from '../components/Card.js'
@@ -27,7 +27,6 @@ formValidatorAvatr.enableValidation();
 const popupWithImage = new PopupWithImage('#popup__photo-open');
 const popupDeleteImage = new PopupWithConfirm('#popup__photo-delete', {
   onConfirm: ({ id }) => {
-    console.log(Cards, id)
     api.deleteCard(id).then(() => {
       Cards[id].deleteCard();
     })
@@ -78,14 +77,11 @@ cardListSection.renderer();
 
 // обновление аватара
 const popupAvatarEdt = new PopupWithForm('#popup__profile-edt-avatar', (inputs, resolve) => {
-  console.log(inputs)
-  // inputs['avatar-photo-url']
   api.avatarUpdate(inputs['avatar-photo-url'])
     .then((userData) => {
       userInfo.setUserInfo(userData);
     })
     .finally(resolve)
-  // avatarProfile.src = profileAvatarInput.value;
 }, true);
 profileAvatarButton.addEventListener('click', () => {
   popupAvatarEdt.open();

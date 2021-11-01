@@ -46,24 +46,12 @@ export default class Api {
 
   // добавление новой карточки
   addNewCard(name, link) {
-    return fetch(`${this.url}/cards`, {
-      method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify({ name, link })
-    })
-      .then(defaultResponse)
-      .catch(defualtErrorHandler)
+    return this._request('POST', '/cards', { name, link })
   }
 
   // обновление аватара пользователя
   avatarUpdate(avatar) {
-    return fetch(`${this.url}/users/me/avatar`, {
-      method: 'PATCH',
-      headers: this.headers,
-      body: JSON.stringify({ avatar })
-    })
-      .then(defaultResponse)
-      .catch(defualtErrorHandler)
+    return this._request('PATCH', '/users/me/avatar', { avatar })
   }
 
   // удаление карточки по её ID
