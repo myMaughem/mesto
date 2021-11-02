@@ -6,11 +6,6 @@ function defaultResponse(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-function defualtErrorHandler(error) {
-  // TODO: Выводить в блок 
-  console.error(error);
-}
-
 export default class Api {
   constructor(options) {
     this.url = options.url;
@@ -24,18 +19,15 @@ export default class Api {
       body: data ? JSON.stringify(data) : undefined
     })
       .then(defaultResponse)
-      .catch(defualtErrorHandler)
   }
 
   // загрузка инфо о пользователе с сервера
   getProfileInfo() {
-    // New method
     return this._request('GET', '/users/me')
   }
 
   // загрузка карточек
   getCards() {
-    // Old method
     return this._request('GET', '/cards')
   }
 
@@ -61,7 +53,6 @@ export default class Api {
       headers: this.headers,
     })
       .then(defaultResponse)
-      .catch(defualtErrorHandler)
   }
 
   // постановка и снятие лайка по её ID

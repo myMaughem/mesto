@@ -1,6 +1,6 @@
-// import '../pages/index.css';
+import '../pages/index.css';
 
-import { cardItemsData, cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput, profileAvatarButton, formAvatar, profileAvatarInput } from '../utils/constants.js';
+import { cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput, profileAvatarButton, formAvatar } from '../utils/constants.js';
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -44,9 +44,11 @@ const handleLikeClick = (id) => {
   const userId = userInfo.getUserId()
   const isCardLiked = card.isCardLiked(userId)
 
-  api.toggleLike(id, !isCardLiked).then((newCardData) => {
-    card.updateLikes(userId, newCardData.likes)
-  })
+  api.toggleLike(id, !isCardLiked)
+    .then((newCardData) => {
+      card.updateLikes(userId, newCardData.likes)
+    })
+    .catch(defualtErrorHandler)
 }
 const handleTrashClick = (id) => {
   popupDeleteImage.open({ id });
@@ -81,6 +83,7 @@ const popupAvatarEdt = new PopupWithForm('#popup__profile-edt-avatar', (inputs, 
     .then((userData) => {
       userInfo.setUserInfo(userData);
     })
+    .catch(defualtErrorHandler)
     .finally(resolve)
 }, true);
 profileAvatarButton.addEventListener('click', () => {
@@ -104,18 +107,23 @@ const api = new Api({
 Promise.all([
   api.getProfileInfo(),
   api.getCards(),
-]).then(([userData, cardsList]) => {
-  userInfo.setUserInfo(userData)
-  cardListSection
-    .setItems(cardsList)
-    .renderer()
-})
+])
+  .then(([userData, cardsList]) => {
+    userInfo.setUserInfo(userData)
+    cardListSection
+      .setItems(cardsList)
+      .renderer()
+  })
+  .catch(defualtErrorHandler)
 
 // обновление профиля
 const popupProfile = new PopupWithForm('#popup__profile-edt', ({ fullname, info }, resolve) => {
-  api.profileUpdate(fullname, info).then((userData) => {
-    userInfo.setUserInfo(userData);
-  }).finally(resolve)
+  api.profileUpdate(fullname, info)
+    .then((userData) => {
+      userInfo.setUserInfo(userData);
+    })
+    .catch(defualtErrorHandler)
+    .finally(resolve)
 }, true);
 profileOpenButton.addEventListener('click', () => {
   popupProfile.open()
@@ -136,8 +144,14 @@ const popupPhotoEdt = new PopupWithForm('#popup__photo-edt', (formInputValues, r
       const newCardItem = cardItemRenderer(newCard)
       cardListSection.addItem(newCardItem, 'before');
     })
+    .catch(defualtErrorHandler)
     .finally(resolve)
 }, true);
 addPhotoOpenButton.addEventListener('click', () => {
   popupPhotoEdt.open();
 })
+
+function defualtErrorHandler(error) {
+  // TODO: Выводить в блок 
+  console.error(error);
+}
