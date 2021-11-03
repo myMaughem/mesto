@@ -1,4 +1,4 @@
-// import '../pages/index.css';
+import '../pages/index.css';
 
 import { cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput, profileAvatarButton, formAvatar } from '../utils/constants.js';
 import Card from '../components/Card.js'
