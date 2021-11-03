@@ -1,4 +1,4 @@
-import '../pages/index.css';
+// import '../pages/index.css';
 
 import { cardListSectionSelector, profileOpenButton, formProfile, formPhoto, addPhotoOpenButton, profileNameInput, profileInfoInput, profileAvatarButton, formAvatar } from '../utils/constants.js';
 import Card from '../components/Card.js'
@@ -30,6 +30,7 @@ const popupDeleteImage = new PopupWithConfirm('#popup__photo-delete', {
     api.deleteCard(id)
       .then(() => {
         Cards[id].deleteCard();
+        popupDeleteImage.close();
       })
       .catch(defualtErrorHandler)
   }
