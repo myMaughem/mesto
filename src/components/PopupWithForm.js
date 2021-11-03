@@ -52,14 +52,9 @@ export default class PopupWithForm extends Popup {
     const submitBtn = this.popup.querySelector('button[type=submit]')
     const submitTextBeforePending = submitBtn.textContent
 
-    submitBtn.disabled = true
     submitBtn.textContent = 'Сохранение...'
-
     // Resolve
     return () => {
-      this.close()
-
-      submitBtn.disabled = false
       submitBtn.textContent = submitTextBeforePending
     }
   }

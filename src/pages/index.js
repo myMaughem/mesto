@@ -27,9 +27,11 @@ formValidatorAvatr.enableValidation();
 const popupWithImage = new PopupWithImage('#popup__photo-open');
 const popupDeleteImage = new PopupWithConfirm('#popup__photo-delete', {
   onConfirm: ({ id }) => {
-    api.deleteCard(id).then(() => {
-      Cards[id].deleteCard();
-    })
+    api.deleteCard(id)
+      .then(() => {
+        Cards[id].deleteCard();
+      })
+      .catch(defualtErrorHandler)
   }
 });
 
@@ -39,6 +41,7 @@ const Cards = {}
 const cardClickHandler = (text, image) => {
   popupWithImage.open(text, image)
 }
+
 const handleLikeClick = (id) => {
   const card = Cards[id]
   const userId = userInfo.getUserId()
@@ -82,6 +85,7 @@ const popupAvatarEdt = new PopupWithForm('#popup__profile-edt-avatar', (inputs, 
   api.avatarUpdate(inputs['avatar-photo-url'])
     .then((userData) => {
       userInfo.setUserInfo(userData);
+      popupAvatarEdt.close();
     })
     .catch(defualtErrorHandler)
     .finally(resolve)
@@ -121,6 +125,7 @@ const popupProfile = new PopupWithForm('#popup__profile-edt', ({ fullname, info 
   api.profileUpdate(fullname, info)
     .then((userData) => {
       userInfo.setUserInfo(userData);
+      popupProfile.close();
     })
     .catch(defualtErrorHandler)
     .finally(resolve)
@@ -143,6 +148,7 @@ const popupPhotoEdt = new PopupWithForm('#popup__photo-edt', (formInputValues, r
       // передаёт данные пришедшие от сервера в функцию отрисовки
       const newCardItem = cardItemRenderer(newCard)
       cardListSection.addItem(newCardItem, 'before');
+      popupPhotoEdt.close();
     })
     .catch(defualtErrorHandler)
     .finally(resolve)

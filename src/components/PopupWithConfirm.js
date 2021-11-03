@@ -8,7 +8,6 @@ export default class PopupWithConfirm extends Popup {
     this.refuseBtn = this.popup.querySelector('button[data-confirm=false]')
 
     this.confirmHandler = handlers.onConfirm
-    this.refuseHandler = handlers.onRefuse
 
     this.setEventListeners()
   }
@@ -18,23 +17,12 @@ export default class PopupWithConfirm extends Popup {
     super.open()
   }
 
-  close() {
-    if (this.refuseHandler) {
-      this.refuseHandler()
-    }
-    super.close()
-  }
-
   setEventListeners() {
     if (this.confirmHandler && this.confirmBtn) {
       this.confirmBtn.addEventListener('click', () => {
         super.close()
         this.confirmHandler(this.confirmationData)
       })
-    }
-
-    if (this.refuseHandler && this.refuseBtn) {
-      this.refuseBtn.addEventListener('click', this.refuseHandler)
     }
 
     super.setEventListeners()

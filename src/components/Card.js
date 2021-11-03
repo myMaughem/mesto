@@ -63,9 +63,7 @@ export default class Card {
     })
   }
 
-  likeCard(event) {
-    event.target.classList.toggle('element__like-button_active');
-
+  likeCard() {
     this.handleLikeClick(this.data._id)
   }
 
